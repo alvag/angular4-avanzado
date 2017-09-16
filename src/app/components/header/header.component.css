@@ -1,0 +1,7 @@
+.navigation.col-lg-12 {
+    margin-top: 10px;
+}
+
+.navbar-nav .active {
+    border-bottom: 3px solid orange;
+}

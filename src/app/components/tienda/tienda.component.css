@@ -1,0 +1,15 @@
+.boton_transiciones{
+    padding: 10px;
+    background: red;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid green;
+    transition: all .3s;
+}
+
+.boton_transiciones:hover {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    background: #ccc;
+}
