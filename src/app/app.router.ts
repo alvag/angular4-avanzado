@@ -6,7 +6,10 @@ import {
     AnimalsComponent,
     ContactComponent,
     HomeComponent,
-    KeeperComponent
+    KeeperComponent,
+    RegisterComponent,
+    LoginComponent,
+    UserEditComponent
 } from "./components/index.components";
 
 const app_routes: Routes = [
@@ -18,6 +21,9 @@ const app_routes: Routes = [
     { path: 'contacto', component: ContactComponent },
     { path: 'cuidadores', component: KeeperComponent },
     { path: 'parques', component: ParquesComponent },
+    { path: 'registro', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'mis-datos', component: UserEditComponent },
     { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

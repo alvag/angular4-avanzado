@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
+import { AdminGuard } from "../guards/admin.guard";
 
 import {  AdminComponent,
           AddComponent,
@@ -11,6 +12,7 @@ const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AdminGuard],
     children: [
       {path: '', component: ListComponent},
       {path: 'listado', component: ListComponent},
@@ -26,6 +28,7 @@ const adminRoutes: Routes = [
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  providers: []
 })
 export class AdminRouterModule { }

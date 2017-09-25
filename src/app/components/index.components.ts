@@ -4,3 +4,6 @@ export { AnimalsComponent } from "./animals/animals.component";
 export { ContactComponent } from "./contact/contact.component";
 export { HomeComponent } from "./home/home.component";
 export { KeeperComponent } from "./keeper/keeper.component";
+export { LoginComponent } from "./login/login.component";
+export { RegisterComponent } from "./register/register.component";
+export { UserEditComponent } from "./user-edit/user-edit.component";

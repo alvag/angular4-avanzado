@@ -1,0 +1,57 @@
+<div class="col-xs-6">
+    <h1>{{ title }}</h1>
+    
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        
+        <div class="form-group has-feedback" [ngClass]="{'has-success': firstName.valid && firstName.dirty, 'has-error': firstName.invalid && firstName.dirty}">
+            <label for="firstName" class="control-label">Nombre</label>
+            <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="user.firstName" id="firstName" class="form-control"
+                   pattern="[a-zA-Z][a-zA-Z ]+" required>
+            <span *ngIf="firstName.valid && firstName.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="firstName.invalid && firstName.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="firstName.valid || firstName.pristine" class="text-danger">
+                <span [hidden]="!firstName.hasError('required')">Tu nombre es requerido</span>
+                <span [hidden]="!firstName.hasError('pattern')">Tu nombre debe tener al menos 2 letras y no puedes usar números</span>
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback" [ngClass]="{'has-success': lastName.valid && lastName.dirty, 'has-error': lastName.invalid && lastName.dirty}">
+            <label for="lastName" class="control-label">Apellidos</label>
+            <input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="user.lastName" id="lastName" class="form-control"
+                   pattern="[a-zA-Z][a-zA-Z ]+" required>
+            <span *ngIf="lastName.valid && lastName.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="lastName.invalid && lastName.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="lastName.valid || lastName.pristine" class="text-danger">
+                <span [hidden]="!lastName.hasError('required')">Los apellidos son requerido</span>
+                <span [hidden]="!lastName.hasError('pattern')">Tu nombre debe tener al menos 2 letras y no puedes usar números</span>
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback" [ngClass]="{'has-success': email.valid && email.dirty, 'has-error': email.invalid && email.dirty}">
+            <label for="email" class="control-label">Correo Electrónico</label>
+            <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                   required>
+            <span *ngIf="email.valid && email.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="email.invalid && email.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="email.valid || email.pristine" class="text-danger">
+                <span [hidden]="!email.hasError('required')">El email es requerido</span>
+                <span [hidden]="!email.hasError('pattern')">Ingresa un formato válido de correo</span>
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback" [ngClass]="{'has-success': password.valid && password.dirty, 'has-error': password.invalid && password.dirty}">
+            <label for="password" class="control-label">Contraseña</label>
+            <input type="password" name="password" id="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" minlength="6"
+                   required>
+            <span *ngIf="password.valid && password.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="password.invalid && password.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="password.valid || password.pristine" class="text-danger">
+                <span [hidden]="!password.hasError('required')">El password es requerido</span>
+                <span [hidden]="!password.hasError('minlength')">Tu contraseña debe tener al menos 6 caracteres</span>
+            </div>
+        </div>
+        
+        <input type="submit" class="btn btn-primary" [disabled]="registerForm.invalid" value="{{title}}">
+    </form>
+
+</div>

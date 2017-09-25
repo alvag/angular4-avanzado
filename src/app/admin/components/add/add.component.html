@@ -1,18 +1,47 @@
-<h3>{{ title }}</h3>
-
-<form>
-    <p>
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" class="form-control">
-    </p>
-    <p>
-        <label for="descripcion">Descripcion</label>
-        <textarea id="descripcion" class="form-control"></textarea>
-    </p>
-    <p>
-        <label for="year">Año</label>
-        <input type="text" id="year" class="form-control">
-    </p>
-
-    <input type="submit" value="Agregar" class="btn btn-primary">
-</form>
+<div class="col-lg-10">
+    <h3>{{ title }}</h3>
+    
+    <form #formAdd="ngForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group has-feedback" [ngClass]="{'has-success': name.valid && name.dirty, 'has-error': name.invalid && name.dirty}">
+            <label for="name" class="control-label">Nombre</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="animal.name" id="name" class="form-control"
+                   pattern="[a-zA-Z][a-zA-Z ]+" required>
+            <span *ngIf="name.valid && name.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="name.invalid && name.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="name.valid || name.pristine" class="text-danger">
+                <span [hidden]="!name.hasError('required')">El nombre es requerido</span>
+                <span [hidden]="!name.hasError('pattern')">El nombre debe tener al menos 2 letras y no puedes usar números</span>
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback" [ngClass]="{'has-success': description.valid && name.dirty, 'has-error': description.invalid && description.dirty}">
+            <label for="description" class="control-label">Descripción</label>
+            <textarea type="text" name="description" #description="ngModel" [(ngModel)]="animal.description" id="description" class="form-control"
+                      required></textarea>
+            <span *ngIf="description.valid && description.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="description.invalid && description.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="description.valid || description.pristine" class="text-danger">
+                <span [hidden]="!description.hasError('required')">La descripción es requerida</span>
+            </div>
+        </div>
+    
+        <div class="form-group has-feedback" [ngClass]="{'has-success': year.valid && name.dirty, 'has-error': year.invalid && year.dirty}">
+            <label for="year" class="control-label">Año</label>
+            <input type="text" name="year" #year="ngModel" [(ngModel)]="animal.year" id="year" class="form-control"
+                   required>
+            <span *ngIf="year.valid && year.dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span *ngIf="year.invalid && year.dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <div [hidden]="year.valid || year.pristine" class="text-danger">
+                <span [hidden]="!name.hasError('required')">El año es requerido</span>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label for="image" class="control-label">Sube una imagen</label>
+            <input #fileInput type="file" class="form-control" name="image" id="image" accept=".jpg, .jpeg, .png">
+        </div>
+        
+        <input type="submit" value="Agregar" class="btn btn-primary">
+    </form>
+</div>
